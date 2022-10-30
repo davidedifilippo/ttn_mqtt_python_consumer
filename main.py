@@ -52,9 +52,15 @@ args, unknown = parser.parse_known_args()
 def on_connect(mqttc, obj, flags, rc):
     print("rc: " + str(rc))
 
-
 def on_message(mqttc, obj, msg):
-    print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+    # print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
+    
+    json_msg = json.loads(str(msg.payload.decode("utf-8", "ignore")))
+
+    print("device id: ", json_msg['end_device_ids']['device_id'])
+    print("application id: ", json_msg['end_device_ids']['application_ids']['application_id'])
+    print("dev_eui: ", json_msg['end_device_ids']['dev_eui'])
+    print("join_eui: ", json_msg['end_device_ids']['join_eui'])
 
 
 def on_publish(mqttc, obj, mid):
