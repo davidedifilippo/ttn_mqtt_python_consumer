@@ -18,7 +18,7 @@
 # python. / main.py - -host "eu1.cloud.thethings.network" --port 1883
 # --topic v3/lorawan-e5-board2@ttn/devices/eui-2cf7f12024900b06/up"
 # --username"lorawan-e5-board2"
-# --password "NNSXS.IYQX45JVDS3ELRCFZFKNZUIGN3YVGBA3LD3PVPA.OPLTXASUP7DJBWDD2DV3M7KODFAMWNEN7WVRF265FZST5DX6ILEA"
+# --password "MQTT_TOKEN"
 
 import argparse
 import os
