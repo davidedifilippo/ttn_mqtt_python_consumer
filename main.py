@@ -54,13 +54,20 @@ def on_connect(mqttc, obj, flags, rc):
 
 def on_message(mqttc, obj, msg):
     # print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
-    
     json_msg = json.loads(str(msg.payload.decode("utf-8", "ignore")))
-
+    # print("device id: ", json_msg)
     print("device id: ", json_msg['end_device_ids']['device_id'])
     print("application id: ", json_msg['end_device_ids']['application_ids']['application_id'])
     print("dev_eui: ", json_msg['end_device_ids']['dev_eui'])
-    print("join_eui: ", json_msg['end_device_ids']['join_eui'])
+    # print("join_eui: ", json_msg['end_device_ids']['join_eui'])
+    # print("uplink_message: ", json_msg['uplink_message'])
+    # print("decoded_payload: ", json_msg['uplink_message']['decoded_payload'])
+    print("humidity: ", json_msg['uplink_message']['decoded_payload']['payload']['humidity'])
+    print("temperature: ", json_msg['uplink_message']['decoded_payload']['payload']['temperature'])
+    print("time: ", json_msg['uplink_message']['rx_metadata'][0]['time'])
+    print("location: ", json_msg['uplink_message']['rx_metadata'][0]['location']['latitude'])
+    print("location: ", json_msg['uplink_message']['rx_metadata'][0]['location']['longitude'])
+    print("location: ", json_msg['uplink_message']['rx_metadata'][0]['location']['altitude'])
 
 
 def on_publish(mqttc, obj, mid):
